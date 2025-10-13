@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Health Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="inv-canvas" class="canvas">
+      <div class="canvas__inner">
+        <header class="header">
+          <h1 class="header__title">Inventory Health Dashboard</h1>
+          <div class="header__controls">
+            <span class="header__updated">Last Updated: <strong id="lastUpdated"></strong></span>
+            <button type="button" class="btn btn--primary" id="refreshBtn">Refresh</button>
+            <a class="btn btn--secondary" href="/export.csv">Export CSV</a>
+          </div>
+        </header>
+
+        <section class="quick-links" aria-label="Quick links">
+          <a class="quick-links__card quick-links__card--primary" href="https://td3012435.app.netsuite.com/app/reporting/reportrunner.nl?cr=230&whence=" target="_blank" rel="noopener noreferrer">
+            <div class="quick-links__label">Report</div>
+            <div class="quick-links__title">Inventory Valuation Summary</div>
+          </a>
+          <a class="quick-links__card quick-links__card--success" href="https://td3012435.app.netsuite.com/app/reporting/reportrunner.nl?cr=456&whence=" target="_blank" rel="noopener noreferrer">
+            <div class="quick-links__label">Custom Report</div>
+            <div class="quick-links__title">Inventory Turnover (ID: 456)</div>
+          </a>
+        </section>
+
+        <section class="filters" aria-label="Dashboard filters">
+          <label class="filters__field">
+            <span class="filters__label">Location</span>
+            <select id="loc" class="filters__input"></select>
+          </label>
+          <label class="filters__field">
+            <span class="filters__label">Spike/Drop Δ%</span>
+            <input id="thrDelta" class="filters__input filters__input--small" type="number" value="30" min="5" max="95" />
+          </label>
+          <label class="filters__field">
+            <span class="filters__label">Min DoS</span>
+            <input id="thrDos" class="filters__input filters__input--small" type="number" value="0" min="0" max="365" />
+          </label>
+        </section>
+
+        <section class="card" aria-labelledby="itemsHeading">
+          <div class="card__header">
+            <div>
+              <h2 id="itemsHeading" class="card__title">Top Items — Demand, DoS &amp; Alerts</h2>
+              <p class="card__subtitle">Shows last 90d unit sales; Δ% compares last 30d vs prior 30d. DoS = (On-hand + On-order) / Avg daily demand (last 30d).</p>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Item</th>
+                  <th scope="col" class="u-text-right">Units Sold (90d)</th>
+                  <th scope="col" class="u-text-right">Last 30d</th>
+                  <th scope="col" class="u-text-right">Prior 30d</th>
+                  <th scope="col">Δ%</th>
+                  <th scope="col" class="u-text-right">DoS</th>
+                  <th scope="col">Alerts</th>
+                </tr>
+              </thead>
+              <tbody id="rows" aria-live="polite"></tbody>
+            </table>
+          </div>
+          <footer class="card__footer">
+            Turnover: use
+            <a href="https://td3012435.app.netsuite.com/app/reporting/reportrunner.nl?cr=230&whence=" target="_blank" rel="noopener noreferrer">Inventory Valuation Summary</a>
+            or custom
+            <a href="https://td3012435.app.netsuite.com/app/reporting/reportrunner.nl?cr=456&whence=" target="_blank" rel="noopener noreferrer">Inventory Turnover (ID 456)</a>.
+            Thresholds configurable above.
+          </footer>
+        </section>
+      </div>
+    </div>
+
+    <template id="rowTemplate">
+      <tr>
+        <td class="table__cell table__cell--item">
+          <a class="link" target="_blank" rel="noopener noreferrer"></a>
+        </td>
+        <td class="table__cell u-text-right" data-field="units90"></td>
+        <td class="table__cell u-text-right" data-field="last30"></td>
+        <td class="table__cell u-text-right" data-field="prior30"></td>
+        <td class="table__cell" data-field="delta"></td>
+        <td class="table__cell u-text-right" data-field="dos"></td>
+        <td class="table__cell" data-field="alerts"></td>
+      </tr>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
