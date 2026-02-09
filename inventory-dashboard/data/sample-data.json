@@ -1,0 +1,71 @@
+{
+  "lastRefreshedAt": "2024-03-01 08:15",
+  "locations": ["Northeast", "Midwest", "West"],
+  "rows": [
+    {
+      "itemId": 1024,
+      "itemName": "Carbon Steel Bolt 3/8\"",
+      "location": "Northeast",
+      "units90": 1820,
+      "last30": 640,
+      "prior30": 420,
+      "onHand": 320,
+      "onOrder": 180,
+      "leadTime": 7,
+      "reorderPoint": 250,
+      "avgDaily": 18.5
+    },
+    {
+      "itemId": 2048,
+      "itemName": "Hex Nut 3/8\"",
+      "location": "Midwest",
+      "units90": 1510,
+      "last30": 360,
+      "prior30": 520,
+      "onHand": 700,
+      "onOrder": 120,
+      "leadTime": 10,
+      "reorderPoint": 400,
+      "avgDaily": 16.8
+    },
+    {
+      "itemId": 3056,
+      "itemName": "Steel Washer 3/8\"",
+      "location": "West",
+      "units90": 980,
+      "last30": 120,
+      "prior30": 110,
+      "onHand": 95,
+      "onOrder": 20,
+      "leadTime": 12,
+      "reorderPoint": 160,
+      "avgDaily": 4.6
+    },
+    {
+      "itemId": 4072,
+      "itemName": "Anchor Kit",
+      "location": "Northeast",
+      "units90": 650,
+      "last30": 200,
+      "prior30": 80,
+      "onHand": 180,
+      "onOrder": 40,
+      "leadTime": 14,
+      "reorderPoint": 120,
+      "avgDaily": 6.5
+    },
+    {
+      "itemId": 5096,
+      "itemName": "Masonry Drill Bit",
+      "location": "Midwest",
+      "units90": 430,
+      "last30": 30,
+      "prior30": 210,
+      "onHand": 150,
+      "onOrder": 0,
+      "leadTime": 21,
+      "reorderPoint": 80,
+      "avgDaily": 5.2
+    }
+  ]
+}
